@@ -23,4 +23,15 @@ router.get("/books", async (req, res) => {
   }
 });
 
+router.post("/books/post", async (req, res) => {
+  const books = new BookModel(req.body);
+
+  try {
+    await books.save();
+    res.send(books);
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
 module.exports = router;
